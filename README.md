@@ -83,6 +83,12 @@ This example is perfect if you want to see how to wire up a modern full-stack Ty
     ```bash
     npm run db:seed
     ```
+5. **Create .env file**
+    Create a .env file in the project root directory. Sample:
+    ```env
+    VITE_GRAPHQL_WS_URL="ws://localhost:4000"
+    GRAPHQL_PORT = 4000
+    ```
 
 5. **Run the project**
     ```bash

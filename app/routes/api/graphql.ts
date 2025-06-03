@@ -1,10 +1,7 @@
 import { createAPIFileRoute } from "@tanstack/react-start/api";
 import { ApolloServer } from "@apollo/server";
-import path from "path";
 import { readFileSync } from "fs";
-import { resolvers } from "@/app/graphql/resolvers";
-import { fileURLToPath } from "url";
-import { dirname } from "path";
+import resolvers from "@/app/graphql/resolvers";
 import { createServer } from "http";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
 import { makeExecutableSchema } from "@graphql-tools/schema";
@@ -13,13 +10,11 @@ import { useServer } from "graphql-ws/use/ws";
 
 const GRAPHQL_PORT = Number(process.env.GRAPHQL_PORT) || 4000;
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-
-const schemaPath = path.join(__dirname, "../../graphql/schema.graphql");
+const schemaPath = new URL("../../graphql/schema.graphql", import.meta.url);
 const typeDefs = readFileSync(schemaPath, "utf-8");
 
 const httpServer = createServer();
-  
+
 const wsServer = new WebSocketServer({
   server: httpServer,
   path: "/api/subscriptions",
@@ -47,8 +42,12 @@ const server = new ApolloServer({
 await server.start();
 
 httpServer.listen(GRAPHQL_PORT, () => {
-  console.log(`🚀 GraphQL server ready at http://localhost:${GRAPHQL_PORT}/api/graphql`);
-  console.log(`🚀 Subscriptions ready at ws://localhost:${GRAPHQL_PORT}/api/subscriptions`);
+  console.log(
+    `🚀 GraphQL server ready at ${process.env.VITE_GRAPHQL_WS_URL}/api/graphql`
+  );
+  console.log(
+    `🚀 Subscriptions ready at ${process.env.VITE_GRAPHQL_WS_URL}/api/subscriptions`
+  );
 });
 
 export const APIRoute = createAPIFileRoute("/api/graphql")({
@@ -80,7 +79,7 @@ export const APIRoute = createAPIFileRoute("/api/graphql")({
   },
 
   POST: async ({ request }) => {
-    let body: {query: string, variables: object, operationName: string};
+    let body: { query: string; variables: object; operationName: string };
     try {
       body = await request.json();
     } catch (error) {

@@ -10,13 +10,14 @@ import { GraphQLWsLink } from "@apollo/client/link/subscriptions";
 import { createClient } from "graphql-ws";
 import { getMainDefinition } from "@apollo/client/utilities";
 import NotFound from "@/app/components/not_found";
+const VITE_GRAPHQL_WS_URL = import.meta.env.VITE_GRAPHQL_WS_URL;
 
 export function createRouter() {
   const httpLink = new HttpLink({ uri: "/api/graphql" });
 
   const wsLink = new GraphQLWsLink(
     createClient({
-      url: `${window.location.protocol === "https:" ? "wss" : "ws"}://${window.location.host}/api/subscriptions`,
+      url: `${VITE_GRAPHQL_WS_URL}/api/subscriptions`,
     })
   );
 
