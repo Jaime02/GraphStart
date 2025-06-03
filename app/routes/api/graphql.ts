@@ -4,6 +4,7 @@ import { readFileSync } from "fs";
 import resolvers from "@/app/graphql/resolvers";
 import { createServer } from "http";
 import { ApolloServerPluginDrainHttpServer } from "@apollo/server/plugin/drainHttpServer";
+import { ApolloServerPluginUsageReportingDisabled } from '@apollo/server/plugin/disabled';
 import { makeExecutableSchema } from "@graphql-tools/schema";
 import { WebSocketServer } from "ws";
 import { useServer } from "graphql-ws/use/ws";
@@ -26,6 +27,7 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   plugins: [
+    ApolloServerPluginUsageReportingDisabled(),
     ApolloServerPluginDrainHttpServer({ httpServer }),
     {
       async serverWillStart() {
