@@ -11,7 +11,6 @@ An example repository showcasing how to integrate GraphQL queries and subscripti
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
-  - [Run the project](#run-the-project)
   - [Other](#other)
 - [Pending tasks](#pending-tasks)
 - [Known issues](#known-issues)
@@ -85,7 +84,7 @@ This example is perfect if you want to see how to wire up a modern full-stack Ty
     npm run db:seed
     ```
 
-### Run the project
+5. **Run the project**
     ```bash
     npm run dev
     ```
