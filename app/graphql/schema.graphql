@@ -1,0 +1,50 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  posts: [Post!]!
+  createdAt: Float!
+}
+
+type Post {
+  id: ID!
+  title: String!
+  content: String
+  author: User!
+  createdAt: Float!
+}
+
+type Query {
+  users: [User!]!
+  user(id: ID!): User
+  posts: [Post!]!
+  post(id: ID!): Post
+}
+
+type Mutation {
+  createUser(name: String!, email: String!): User!
+  createPost(title: String!, content: String, authorId: ID!): Post!
+  deleteUser(userId: ID!): ID
+}
+
+enum ChangeType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+type PostChangePayload {
+  type: ChangeType!
+  post: Post!
+}
+
+type UserChangePayload {
+  type: ChangeType!
+  user: User
+  userId: ID
+}
+
+type Subscription {
+  postChanged: PostChangePayload!
+  userChanged: UserChangePayload!
+}

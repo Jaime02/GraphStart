@@ -1,0 +1,43 @@
+{
+  "name": "graphstart",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start",
+    "db:seed": "tsx db/seed.ts"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.13.8",
+    "@apollo/client-integration-tanstack-start": "^0.12.3-alpha.5",
+    "@apollo/server": "^4.12.1",
+    "@as-integrations/next": "^3.2.0",
+    "@graphql-tools/schema": "^10.0.23",
+    "@libsql/client": "^0.15.8",
+    "@tailwindcss/postcss": "^4.1.8",
+    "@tanstack/react-query": "^5.79.0",
+    "@tanstack/react-router": "^1.117.1",
+    "@tanstack/react-start": "^1.120.13",
+    "@tanstack/start": "^1.120.13",
+    "dotenv": "^16.5.0",
+    "drizzle-orm": "^0.44.1",
+    "graphql": "^16.11.0",
+    "graphql-subscriptions": "^3.0.0",
+    "graphql-ws": "^6.0.5",
+    "postcss": "^8.5.4",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "tailwindcss": "^4.1.8",
+    "vinxi": "0.5.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "ws": "^8.18.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/cli": "^5.0.6",
+    "@types/react": "^19.0.8",
+    "drizzle-kit": "^0.31.1",
+    "tsx": "^4.19.4"
+  }
+}
